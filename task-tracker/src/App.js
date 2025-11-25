@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
+import TaskStats from './components/TaskStats';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [input, setInput] = useState('');
 
-  const addTask = () => {
-    if (input.trim()) {
-      setTasks([...tasks, { id: Date.now(), text: input, completed: false }]);
-      setInput('');
-    }
+
+  const addTask = (title) => {
+    setTasks([...tasks, { id: Date.now(), title: title, completed: false }]);
   };
 
   const deleteTask = (id) => {
@@ -26,30 +26,17 @@ function App() {
     <div className="App">
       <div className="container">
         <h1>Task Tracker</h1>
-        <div className="input-container">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && addTask()}
-            placeholder="Add a new task..."
-          />
-          <button onClick={addTask}>Add Task</button>
-        </div>
-        <ul className="task-list">
-          {tasks.map(task => (
-            <li key={task.id} className={task.completed ? 'completed' : ''}>
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id)}
-              />
-              <span>{task.text}</span>
-              <button onClick={() => deleteTask(task.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-        {tasks.length === 0 && <p className="empty-message">No tasks yet. Add one to get started!</p>}
+        <TaskStats
+          total = {tasks.length}
+          active = {tasks.filter(t=>!t.completed).length}
+          completed={tasks.filter(t=>t.completed).length}
+        />
+        <TaskForm onAddTask={addTask}/>
+        <TaskList 
+          tasks={tasks}
+          onToggle={toggleTask}
+          onDelete={deleteTask}
+        />
       </div>
     </div>
   );
