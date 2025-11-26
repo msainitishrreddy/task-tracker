@@ -18,7 +18,6 @@ function TaskList({tasks, filter, onFilterChange, onToggle, onDelete}){
     return(
         <div className='task-list-container'>
             <div className='task-list-filter'>
-                {/* 2. Add onClick handlers and 3. dynamic className for active filter */}
                 <button
                     className={`filter-button ${filter === 'all' ? 'active-filter' : ''}`}
                     onClick={() => onFilterChange('all')}
