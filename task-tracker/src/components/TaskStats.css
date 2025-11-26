@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-around;
   gap: 20px;
-  margin-bottom: 30px;
+  margin: 4px;
   padding: 20px;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stat-box {

@@ -1,11 +1,11 @@
 .task-form {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
-  padding: 20px;
+  padding: 8px;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 4px;
 }
 
 .task-form-input {

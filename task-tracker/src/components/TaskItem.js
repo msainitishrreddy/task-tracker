@@ -1,5 +1,4 @@
 import './TaskItem.css';
-import React from 'react';
 
 function TaskItem({ task, onToggle, onDelete }){
     return (

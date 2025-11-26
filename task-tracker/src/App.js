@@ -6,7 +6,7 @@ import TaskList from './components/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-
+  const [filter, setFilter] = useState('All');
 
   const addTask = (title) => {
     setTasks([...tasks, { id: Date.now(), title: title, completed: false }]);
@@ -16,10 +16,16 @@ function App() {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
+
+
   const toggleTask = (id) => {
     setTasks(tasks.map(task =>
       task.id === id ? { ...task, completed: !task.completed } : task
     ));
+  };
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
   };
 
   return (
@@ -34,6 +40,8 @@ function App() {
         <TaskForm onAddTask={addTask}/>
         <TaskList 
           tasks={tasks}
+          filter={filter}
+          onFilterChange={handleFilterChange}
           onToggle={toggleTask}
           onDelete={deleteTask}
         />
